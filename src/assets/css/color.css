@@ -1,0 +1,35 @@
+ 
+:root {
+
+  --background:#d9e6f4;
+
+  /* Identidade visual */
+  --orkut-pink: #E8258E;
+  --orkut-pink-dark: #B11E89;
+  --orkut-purple: #A78BBE;
+
+  /* Fundos */
+  --orkut-background: #D4DDED;
+  --orkut-background-light: #E8EEFA;
+  --orkut-white: #FFFFFF;
+
+  /* Painéis e cabeçalhos */
+  --orkut-blue: #89B1D6;
+  --orkut-blue-light: #B4D1EC;
+  --orkut-blue-panel: #BCCDE9;
+  --orkut-lilac: #E8E0F0;
+
+  /* Textos e links */
+  --orkut-text: #333333;
+  --orkut-text-secondary: #666666;
+  --orkut-link: #336699;
+  --orkut-link-strong: #0047BE;
+
+  /* Bordas */
+  --orkut-border: #C9D9ED;
+  --orkut-border-light: #E2E8FD;
+
+  /* Destaques */
+  --orkut-highlight: #F6ECB2;
+  --orkut-pink-light: #E95B95;
+}

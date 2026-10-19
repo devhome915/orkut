@@ -1,0 +1,14 @@
+.profile-title {
+  color: var(--orkut-link);
+}
+.orkut-panel {
+  background-color: var(--orkut-white);
+  border: 1px solid var(--orkut-border);
+  border-radius: 8px;
+}
+
+.orkut-panel-header {
+  background-color: var(--orkut-blue-panel);
+  color: var(--orkut-link-strong);
+  padding: 12px 16px;
+}

@@ -1,0 +1,26 @@
+@import url(./color.css);
+
+body {
+  background-color: var(--orkut-background);
+  color: var(--orkut-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.orkut-card {
+  background-color: var(--orkut-white);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.orkut-title {
+  color: var(--orkut-pink);
+}
+
+.orkut-link {
+  color: var(--orkut-link);
+  text-decoration: none;
+}
+
+.orkut-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+@import url(./assets/css/orkut.css);
+
+:root {
+  --bs-primary: var(--orkut-link);
+  --bs-primary-rgb: 51, 102, 153;
+  --bs-body-color: var(--orkut-text);
+  --bs-body-bg: var(--orkut-background);
+  --bs-link-color: var(--orkut-link);
+  --bs-link-hover-color: var(--orkut-link-strong);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--orkut-background);
+}
+
+#root {
+  min-height: 100vh;
+}

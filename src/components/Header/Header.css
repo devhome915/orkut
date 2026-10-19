@@ -1,0 +1,28 @@
+@import url("../../assets/css/color.css");
+
+.orkut-header {
+  background-color: var(--orkut-white);
+  border-bottom: 1px solid var(--orkut-border);
+}
+
+.orkut-header .orkut-logo {
+  color: var(--orkut-pink);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.orkut-header .navbar-nav {
+  gap: 15px;
+}
+
+.orkut-header .nav-link {
+  color: var(--orkut-link);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.orkut-header .nav-link:hover {
+  color: var(--orkut-pink-dark);
+  text-decoration: underline;
+}
