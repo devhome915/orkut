@@ -4,5 +4,6 @@ export interface User {
   city: string
   country: string
   avatar?: string
+  bio?: string
+  friendsCount?: number
 }
-

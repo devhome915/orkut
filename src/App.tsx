@@ -7,6 +7,7 @@ import Profile from './pages/Profile'
 import ScrapsPage from './pages/Scraps'
 import Friends from './pages/Friends'
 import Communities from './pages/Communities'
+import ProfileRedirect from './pages/ProfileRedirect'
 
 import './App.css'
 
@@ -17,7 +18,9 @@ function App() {
 
         <Route path="/" element={<Home />} />
 
-        <Route path="/perfil" element={<Profile />} />
+        <Route path="/perfil" element={<ProfileRedirect />}/>
+
+        <Route path="/perfil/:id" element={<Profile />} />
 
         <Route path="/recados" element={<ScrapsPage />} />
 

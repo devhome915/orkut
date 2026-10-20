@@ -46,3 +46,8 @@ export const friends: User[] = [
     country: 'Brasil'
   }
 ]
+
+export const users: User[] = [
+  currentUser,
+  ...friends
+]
