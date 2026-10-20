@@ -1,0 +1,47 @@
+.scraps-container {
+  background-color: var(--orkut-white);
+  border: 1px solid var(--orkut-border);
+}
+
+.scraps-header {
+  background-color: var(--orkut-blue-panel);
+}
+
+.scraps-header h5 {
+  color: var(--orkut-link-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.scrap-item {
+  background-color: var(--orkut-background-light);
+  border: 1px solid var(--orkut-border-light);
+}
+
+.scrap-author {
+  color: var(--orkut-link);
+}
+
+.scrap-message {
+  color: var(--orkut-text);
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.scraps-container .form-control:focus {
+  border-color: var(--orkut-blue);
+  box-shadow: none;
+}
+
+.scraps-container .orkut-btn {
+  background-color: var(--orkut-pink);
+  border-color: var(--orkut-pink);
+  color: var(--orkut-white);
+}
+
+.scraps-container .orkut-btn:hover {
+  background-color: var(--orkut-pink-dark);
+  border-color: var(--orkut-pink-dark);
+  color: var(--orkut-white);
+}

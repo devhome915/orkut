@@ -10,15 +10,15 @@ export function ProfileCard({ user }: ProfileCardProps) {
     <aside className="profile-card bg-white rounded p-3">
 
       <div className="profile-avatar d-flex align-items-center justify-content-center mb-3">
-        {user.avatar ? (
           <img
-            src={user.avatar}
+            src={user.avatar || "/src/assets/img/avatar/avatar.png"}
             alt={`Foto de ${user.name}`}
             className="img-fluid rounded"
+            onError={(event)=>{
+              event.currentTarget.onerror = null;
+              event.currentTarget.src = "/src/assets/img/avatar/avatar.png"
+            }}
           />
-        ) : (
-          <span className="fs-1">👤</span>
-        )}
       </div>
 
       <h5 className="profile-name mb-1">

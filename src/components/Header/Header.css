@@ -4,6 +4,11 @@
   background-color: var(--orkut-white);
   border-bottom: 1px solid var(--orkut-border);
 }
+.orkut-header .nav-link.active {
+  color: var(--orkut-pink);
+  font-weight: 700;
+  border-bottom: 2px solid var(--orkut-pink);
+}
 
 .orkut-header .orkut-logo {
   color: var(--orkut-pink);

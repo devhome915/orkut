@@ -1,3 +1,13 @@
+.community-card{
+   border-bottom: 1px solid var(--orkut-border);
+    padding-bottom: 10px;
+}
+.community-card:last-child{
+  border: none;
+}
+.community-card button{
+  font-size: 13px;
+}
 .community-image {
   width: 64px;
   height: 64px;

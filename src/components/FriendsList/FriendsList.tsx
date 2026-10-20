@@ -1,4 +1,5 @@
 import type { User } from '../../types/User'
+import { Link } from 'react-router-dom'
 import './FriendsList.css'
 
 interface FriendsListProps {
@@ -14,9 +15,12 @@ export function FriendsList({ friends }: FriendsListProps) {
           Meus amigos ({friends.length})
         </h5>
 
-        <a href="#amigos">
+        <Link
+          to={`/amigos`}
+          className="friend-name text-decoration-none"
+        >
           ver todos
-        </a>
+        </Link>
       </div>
 
       <div className="p-3">
@@ -41,7 +45,12 @@ export function FriendsList({ friends }: FriendsListProps) {
                 </div>
 
                 <p className="friend-name mt-2 mb-0">
+                  <Link
+                  to={`/perfil/${friend.id}`}
+                  className="friend-name text-decoration-none"
+                >
                   {friend.name}
+                </Link>
                 </p>
 
               </div>
