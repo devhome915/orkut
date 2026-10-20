@@ -1,7 +1,7 @@
 import type { User } from '../types/User'
 
 export const currentUser: User = {
-  id: 1,
+  id: '1',
   name: 'Alex dos Santos Silva',
   city: 'São Paulo',
   country: 'Brasil',
