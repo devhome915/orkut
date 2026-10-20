@@ -4,10 +4,14 @@ import './App.css'
 import {Header} from './components/Header/Header'
 import { ProfileCard } from './components/ProfileCard/ProfileCard'
 
+import { currentUser } from './data/users'
+import { friends } from './data/users'
+import { FriendsList } from './components/FriendsList/FriendsList'
+import { communities } from './data/communities'
+import {CommunitiesList} from './components/CommunitiesList/CommunitiesList'
+
 function App() {
   const [count, setCount] = useState(0)
-
-  const profileDate = {name:"Alex dos santos", city:"São Paulo", country:"Brasil", avatar:"https://picsum.photos/300/300?random=1"}
 
   return (
     <>
@@ -19,10 +23,7 @@ function App() {
           {/* Coluna esquerda */}
           <div className="col-12 col-lg-3">
             <ProfileCard  
-              name={profileDate.name} 
-              city={profileDate.city}
-              country={profileDate.country}
-              avatar={profileDate.avatar}
+              user={currentUser}
             />
           </div>
 
@@ -53,9 +54,16 @@ function App() {
                 Amigos
               </h5>
 
-              <p className="text-muted small">
-                Nenhum amigo adicionado.
-              </p>
+              {
+                friends.length === 0 ? (
+                  <p className="text-muted small">
+                    Nenhum amigo adicionado.
+                  </p>
+                ) : (
+                  <FriendsList friends={friends} />
+                )
+              }
+              
 
               <hr />
 
@@ -63,9 +71,16 @@ function App() {
                 Comunidades
               </h5>
 
-              <p className="text-muted small mb-0">
-                Nenhuma comunidade.
-              </p>
+              {
+                communities.length == 0 ? (
+                  <p className="text-muted small mb-0">
+                    Nenhuma comunidade.
+                  </p>
+                ):(
+                  <CommunitiesList communities={communities} />
+                )
+              }
+              
             </aside>
           </div>
 

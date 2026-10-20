@@ -1,42 +1,32 @@
+import type { User } from '../../types/User'
 import './ProfileCard.css'
 
 interface ProfileCardProps {
-  name: string
-  city: string
-  country: string
-  avatar?: string
+  user: User
 }
 
-export function ProfileCard({
-  name,
-  city,
-  country,
-  avatar
-}: ProfileCardProps) {
-
+export function ProfileCard({ user }: ProfileCardProps) {
   return (
     <aside className="profile-card bg-white rounded p-3">
 
       <div className="profile-avatar d-flex align-items-center justify-content-center mb-3">
-
-        {avatar ? (
+        {user.avatar ? (
           <img
-            src={avatar}
-            alt={`Foto de ${name}`}
+            src={user.avatar}
+            alt={`Foto de ${user.name}`}
             className="img-fluid rounded"
           />
         ) : (
           <span className="fs-1">👤</span>
         )}
-
       </div>
 
       <h5 className="profile-name mb-1">
-        {name}
+        {user.name}
       </h5>
 
       <p className="text-muted small mb-3">
-        {city}, {country}
+        {user.city}, {user.country}
       </p>
 
       <hr />

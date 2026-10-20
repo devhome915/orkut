@@ -1,0 +1,25 @@
+.communities-list {
+  background-color: var(--orkut-white);
+  border: 1px solid var(--orkut-border);
+}
+
+.communities-header {
+  background-color: var(--orkut-blue-panel);
+}
+
+.communities-header h5 {
+  color: var(--orkut-link-strong);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.communities-header a {
+  color: var(--orkut-link);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.communities-header a:hover {
+  color: var(--orkut-pink);
+  text-decoration: underline;
+}

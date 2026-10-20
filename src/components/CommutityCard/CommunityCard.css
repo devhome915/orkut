@@ -1,0 +1,42 @@
+.community-image {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background-color: var(--orkut-background-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.community-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.community-name {
+  color: var(--orkut-link);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.community-members {
+  color: var(--orkut-text-secondary);
+  font-size: 12px;
+}
+
+.orkut-btn {
+  background-color: var(--orkut-pink);
+  color: var(--orkut-white);
+  border: 1px solid var(--orkut-pink);
+}
+
+.orkut-btn:hover {
+  background-color: var(--orkut-pink-dark);
+  color: var(--orkut-white);
+  border-color: var(--orkut-pink-dark);
+}
+
+.orkut-btn:focus-visible {
+  outline: 2px solid var(--orkut-link-strong);
+  outline-offset: 2px;
+}
