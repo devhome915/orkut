@@ -1,92 +1,32 @@
-import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import MainLayout from './layouts/MainLayout'
+
+import  Home  from './pages/Home'
+import Profile from './pages/Profile'
+import ScrapsPage from './pages/Scraps'
+import Friends from './pages/Friends'
+import Communities from './pages/Communities'
+
 import './App.css'
 
-import {Header} from './components/Header/Header'
-import { ProfileCard } from './components/ProfileCard/ProfileCard'
-
-import { currentUser } from './data/users'
-import { friends } from './data/users'
-import { FriendsList } from './components/FriendsList/FriendsList'
-import { communities } from './data/communities'
-import {CommunitiesList} from './components/CommunitiesList/CommunitiesList'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Header />
+    <Routes>
+      <Route element={<MainLayout />}>
 
-      <main className="container my-4">
-        <div className="row g-3">
+        <Route path="/" element={<Home />} />
 
-          {/* Coluna esquerda */}
-          <div className="col-12 col-lg-3">
-            <ProfileCard  
-              user={currentUser}
-            />
-          </div>
+        <Route path="/perfil" element={<Profile />} />
 
-          {/* Coluna central */}
-          <div className="col-12 col-lg-6">
-            <section className="bg-white rounded p-4 h-100">
-              <h2 className="text-primary">
-                Bem-vindo ao Orkut!
-              </h2>
+        <Route path="/recados" element={<ScrapsPage />} />
 
-              <p>
-                Essa é sua página inicial.
-              </p>
+        <Route path="/amigos" element={<Friends />} />
 
-              <hr />
+        <Route path="/comunidades" element={<Communities />} />
 
-              <h5>Sobre mim</h5>
-              <p className="text-muted">
-                Em breve você poderá editar seu perfil.
-              </p>
-            </section>
-          </div>
-
-          {/* Coluna direita */}
-          <div className="col-12 col-lg-3">
-            <aside className="bg-white rounded p-3">
-              <h5 className="text-primary">
-                Amigos
-              </h5>
-
-              {
-                friends.length === 0 ? (
-                  <p className="text-muted small">
-                    Nenhum amigo adicionado.
-                  </p>
-                ) : (
-                  <FriendsList friends={friends} />
-                )
-              }
-              
-
-              <hr />
-
-              <h5 className="text-primary">
-                Comunidades
-              </h5>
-
-              {
-                communities.length == 0 ? (
-                  <p className="text-muted small mb-0">
-                    Nenhuma comunidade.
-                  </p>
-                ):(
-                  <CommunitiesList communities={communities} />
-                )
-              }
-              
-            </aside>
-          </div>
-
-        </div>
-      </main>
-    </>
+      </Route>
+    </Routes>
   )
 }
 

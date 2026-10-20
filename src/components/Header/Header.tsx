@@ -1,68 +1,49 @@
+import { NavLink } from 'react-router-dom'
+
 import './Header.css'
 
 export function Header(){
     
-    const linkNav = [
-        {
-            link:'#inicio',
-            title:'Início'
-        },
-        {
-            link:'#perfil',
-            title:'Perfil'
-        },
-        {
-            link:'#recados',
-            title:'Recados'
-        },
-        {
-            link:'#amigos',
-            title:'Amigos'
-        },
-        {
-            link:'#comunidades',
-            title:'Comunidades'
-        },
+    const links = [
+      { path: '/', title: 'Início' },
+      { path: '/perfil', title: 'Perfil' },
+      { path: '/recados', title: 'Recados' },
+      { path: '/amigos', title: 'Amigos' },
+      { path: '/comunidades', title: 'Comunidades' }
     ]
 
     return(
         <header className="orkut-header">
-      <nav className="navbar navbar-expand-lg">
-        <div className="container">
+          <nav className="navbar navbar-expand-lg">
+            <div className="container flex-column flex-lg-row gap-2">
 
-          {/* Logo */}
-          <a className="navbar-brand orkut-logo" href="#inicio">
-            orkut
-          </a>
+              <NavLink
+                to="/"
+                className="navbar-brand orkut-logo"
+              >
+                orkut
+              </NavLink>
 
-          {/* Menu de navegação */}
-          <div className="navbar-nav ms-auto">
+              <div className="navbar-nav flex-row flex-wrap justify-content-center gap-3 ms-lg-auto">
 
-            <a className="nav-link" href="#inicio">
-              Início
-            </a>
+                {links.map((link) => (
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    end={link.path === '/'}
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? 'active' : ''}`
+                    }
+                  >
+                    {link.title}
+                  </NavLink>
+                ))}
 
-            <a className="nav-link" href="#perfil">
-              Perfil
-            </a>
+              </div>
 
-            <a className="nav-link" href="#recados">
-              Recados
-            </a>
-
-            <a className="nav-link" href="#amigos">
-              Amigos
-            </a>
-
-            <a className="nav-link" href="#comunidades">
-              Comunidades
-            </a>
-
-          </div>
-
-        </div>
-      </nav>
-    </header>
+            </div>
+          </nav>
+        </header>
     )
 }
 
