@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Carlos Silva",
+      "city": "São Paulo",
+      "country": "Brasil",
+      "bio": "Desenvolvedor web",
+      "friendsCount": 125
+    },
+    {
+      "id": "2",
+      "name": "Mariana Souza",
+      "city": "Rio de Janeiro",
+      "country": "Brasil",
+      "bio": "Gosto de música e fotografia",
+      "friendsCount": 87
+    },
+    {
+      "id": "3",
+      "name": "Pedro Oliveira",
+      "city": "Campinas",
+      "country": "Brasil",
+      "bio": "Apaixonado por tecnologia",
+      "friendsCount": 204
+    }
+  ],
+  "communities": [
+    {
+      "id": "1",
+      "name": "Rap Nacional",
+      "description": "Comunidade dedicada ao hip-hop brasileiro",
+      "members": 8560
+    },
+    {
+      "id": "2",
+      "name": "Eu amo tecnologia",
+      "description": "Programação e tecnologia",
+      "members": 4120
+    }
+  ],
+  "scraps": []
+}

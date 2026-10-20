@@ -6,10 +6,8 @@ import { users } from '../data/users'
 function Profile() {
   const { id } = useParams<{ id: string }>()
 
-  const userId = Number(id)
-
   const user = users.find(
-    (user) => user.id === userId
+    (user) => user.id === id
   )
 
   if (!user) {

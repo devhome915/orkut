@@ -10,40 +10,46 @@ export const currentUser: User = {
 
 export const friends: User[] = [
   {
-    id: 2,
+    id: '2',
     name: 'Mariana Souza',
     city: 'Rio de Janeiro',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=2"
   },
   {
-    id: 3,
+    id: '3',
     name: 'Pedro Oliveira',
     city: 'Campinas',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=3"
   },
   {
-    id: 4,
+    id: '4',
     name: 'Ana Paula',
     city: 'Santos',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=4"
   },
   {
-    id: 5,
+    id: '5',
     name: 'Lucas Ferreira',
     city: 'Curitiba',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=5"
   },
   {
-    id: 6,
+    id: '6',
     name: 'Juliana Costa',
     city: 'São Paulo',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=6"
   },
   {
-    id: 7,
+    id: '7',
     name: 'Roberto Lima',
     city: 'Belo Horizonte',
-    country: 'Brasil'
+    country: 'Brasil',
+    avatar:"https://picsum.photos/300/300?random=7"
   }
 ]
 

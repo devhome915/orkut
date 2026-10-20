@@ -1,5 +1,6 @@
 import type { Community } from '../../types/Community'
 import { CommunityCard } from '../CommutityCard/CommunityCard'
+import { Link } from 'react-router-dom'
 
 import './CommunitiesList.css'
 
@@ -16,9 +17,12 @@ export function CommunitiesList({ communities }: CommunitiesListProps) {
           Minhas comunidades ({communities.length})
         </h5>
 
-        <a href="#comunidades">
+        <Link
+          to={`/comunidades`}
+          className="friend-name text-decoration-none"
+        >
           ver todas
-        </a>
+        </Link>
       </div>
 
       <div className="p-3">
