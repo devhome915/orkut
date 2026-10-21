@@ -1,4 +1,4 @@
-import { Scraps } from "../components/Scrap/Scrap"
+import Scraps from '../components/Scrap/Scrap'
 
 function ScrapsPage() {
   return (

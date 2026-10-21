@@ -45,3 +45,22 @@
   border-color: var(--orkut-pink-dark);
   color: var(--orkut-white);
 }
+.scrap-item .btn-outline-primary {
+  color: var(--orkut-link);
+  border-color: var(--orkut-link);
+}
+
+.scrap-item .btn-outline-primary:hover {
+  background-color: var(--orkut-link);
+  color: var(--orkut-white);
+}
+
+.scrap-item .btn-outline-danger {
+  color: var(--orkut-pink-dark);
+  border-color: var(--orkut-pink-dark);
+}
+
+.scrap-item .btn-outline-danger:hover {
+  background-color: var(--orkut-pink-dark);
+  color: var(--orkut-white);
+}
