@@ -39,5 +39,25 @@
       "members": 4120
     }
   ],
-  "scraps": []
+  "scraps": [
+    {
+      "id": "1",
+      "author": "Mariana Souza",
+      "message": "Passando para deixar um abraço!!!!",
+      "createdAt": "2026-10-18T14:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "author": "Pedro Oliveira",
+      "message": "Saudades do antigo Orkut! que saudades",
+      "createdAt": "2026-10-19T10:15:00.000Z"
+    },
+    {
+      "author": "Alex dos Santos Silva",
+      "message": "foi mal mano",
+      "createdAt": "2026-10-21T21:20:16.989Z",
+      "id": "nKwlbcd3fQM"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

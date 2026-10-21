@@ -1,41 +1,51 @@
+
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 
-import type { Scrap } from '../../types/Scrap'
-import { initialScraps } from '../../data/Scrap' 
 import { currentUser } from '../../data/users'
+import { useScraps } from '../../hooks/useScraps'
+import ScrapCard from './ScrapCard'
 
 import './Scrap.css'
 
-export function Scraps() {
-  const [message, setMessage] = useState<string>('')
-  const [scraps, setScraps] = useState<Scrap[]>(initialScraps)
+function Scraps() {
+  const {
+    scraps,
+    loading,
+    saving,
+    error,
+    addScrap,
+    editScrap,
+    removeScrap
+  } = useScraps()
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const [message, setMessage] = useState('')
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    if (!message.trim()) {
-      return
-    }
+    if (!message.trim()) return
 
-    const newScrap: Scrap = {
-      id: Date.now(),
+    const success = await addScrap({
       author: currentUser.name,
       message: message.trim(),
       createdAt: new Date().toISOString()
+    })
+
+    if (success) {
+      setMessage('')
     }
-
-    setScraps((previousScraps) => [
-      newScrap,
-      ...previousScraps
-    ])
-
-    setMessage('')
   }
 
-  function handleDelete(id: number) {
-    setScraps((previousScraps) =>
-      previousScraps.filter((scrap) => scrap.id !== id)
+  if (loading) {
+    return (
+      <div className="text-center p-4">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">
+            Carregando...
+          </span>
+        </div>
+      </div>
     )
   }
 
@@ -50,8 +60,17 @@ export function Scraps() {
 
       <div className="p-3">
 
+        {error && (
+          <div className="alert alert-danger">
+            {error}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
-          <label htmlFor="scrap-message" className="form-label">
+          <label
+            htmlFor="scrap-message"
+            className="form-label"
+          >
             Deixe um recado
           </label>
 
@@ -60,61 +79,44 @@ export function Scraps() {
             className="form-control"
             rows={3}
             value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            placeholder="Escreva seu recado..."
+            onChange={event => setMessage(event.target.value)}
           />
 
           <div className="d-flex justify-content-end mt-3">
             <button
               type="submit"
               className="btn orkut-btn"
-              disabled={!message.trim()}
+              disabled={saving || !message.trim()}
             >
-              Publicar recado
+              <i className="bi bi-send me-2" />
+              {saving ? 'Aguarde...' : 'Publicar recado'}
             </button>
           </div>
         </form>
 
         <hr />
 
-        {scraps.length > 0 ? (
-          <div className="d-flex flex-column gap-3">
-            {scraps.map((scrap) => (
-              <article
-                key={scrap.id}
-                className="scrap-item p-3 rounded"
-              >
-                <div className="d-flex justify-content-between gap-2">
-                  <strong className="scrap-author">
-                    {scrap.author}
-                  </strong>
-
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-danger"
-                    onClick={() => handleDelete(scrap.id)}
-                  >
-                    Excluir
-                  </button>
-                </div>
-
-                <p className="scrap-message mt-2 mb-2">
-                  {scrap.message}
-                </p>
-
-                <small className="text-muted">
-                  {new Date(scrap.createdAt).toLocaleString('pt-BR')}
-                </small>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p className="text-muted mb-0">
+        {scraps.length === 0 ? (
+          <p className="text-muted">
             Nenhum recado publicado.
           </p>
+        ) : (
+          <div className="d-flex flex-column gap-3">
+            {scraps.map(scrap => (
+              <ScrapCard
+                key={scrap.id}
+                scrap={scrap}
+                saving={saving}
+                onEdit={editScrap}
+                onDelete={removeScrap}
+              />
+            ))}
+          </div>
         )}
 
       </div>
     </section>
   )
 }
+
+export default Scraps

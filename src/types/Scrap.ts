@@ -1,5 +1,11 @@
 export interface Scrap {
-  id: number
+  id: string
+  author: string
+  message: string
+  createdAt: string
+}
+
+export interface CreateScrap {
   author: string
   message: string
   createdAt: string

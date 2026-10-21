@@ -1,6 +1,5 @@
 import type { User } from '../types/User'
-
-const API_URL = 'http://localhost:3000'
+import { API_URL } from './api'
 
 export async function getUsers(): Promise<User[]> {
   const response = await fetch(`${API_URL}/users`)
