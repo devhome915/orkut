@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import type { Scrap, CreateScrap } from '../types/Scrap'
+import { useToast } from './useToast'
 
 import {
   getScraps,
@@ -13,7 +14,7 @@ export function useScraps() {
   const [scraps, setScraps] = useState<Scrap[]>([])
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { showToast } = useToast()
 
   useEffect(() => {
     let active = true
@@ -27,7 +28,7 @@ export function useScraps() {
         }
       } catch {
         if (active) {
-          setError('Erro ao carregar recados.')
+          showToast('Erro ao carregar recados.', 'error')
         }
       } finally {
         if (active) {
@@ -41,13 +42,12 @@ export function useScraps() {
     return () => {
       active = false
     }
-  }, [])
+  }, [showToast])
 
   async function addScrap(data: CreateScrap) {
     if (saving) return false
 
     setSaving(true)
-    setError(null)
 
     try {
       const created = await createScrap(data)
@@ -56,10 +56,11 @@ export function useScraps() {
         created,
         ...previous
       ])
+      showToast('Recado publicado com sucesso.', 'success')
 
       return true
     } catch {
-      setError('Erro ao publicar recado.')
+      showToast('Erro ao publicar recado.', 'error')
       return false
     } finally {
       setSaving(false)
@@ -70,7 +71,6 @@ export function useScraps() {
     if (saving) return false
 
     setSaving(true)
-    setError(null)
 
     try {
       const updated = await updateScrap(id, message)
@@ -80,10 +80,11 @@ export function useScraps() {
           scrap.id === id ? updated : scrap
         )
       )
+      showToast('Recado atualizado com sucesso.', 'success')
 
       return true
     } catch {
-      setError('Erro ao atualizar recado.')
+      showToast('Erro ao atualizar recado.', 'error')
       return false
     } finally {
       setSaving(false)
@@ -94,7 +95,6 @@ export function useScraps() {
     if (saving) return false
 
     setSaving(true)
-    setError(null)
 
     try {
       await deleteScrap(id)
@@ -102,10 +102,11 @@ export function useScraps() {
       setScraps(previous =>
         previous.filter(scrap => scrap.id !== id)
       )
+      showToast('Recado excluído com sucesso.', 'success')
 
       return true
     } catch {
-      setError('Erro ao excluir recado.')
+      showToast('Erro ao excluir recado.', 'error')
       return false
     } finally {
       setSaving(false)
@@ -116,7 +117,6 @@ export function useScraps() {
     scraps,
     loading,
     saving,
-    error,
     addScrap,
     editScrap,
     removeScrap

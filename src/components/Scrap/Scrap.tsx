@@ -13,7 +13,6 @@ function Scraps() {
     scraps,
     loading,
     saving,
-    error,
     addScrap,
     editScrap,
     removeScrap
@@ -59,12 +58,6 @@ function Scraps() {
       </div>
 
       <div className="p-3">
-
-        {error && (
-          <div className="alert alert-danger">
-            {error}
-          </div>
-        )}
 
         <form onSubmit={handleSubmit}>
           <label
