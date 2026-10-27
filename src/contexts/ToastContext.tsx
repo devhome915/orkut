@@ -2,6 +2,7 @@
 import {
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState
 } from 'react'
@@ -49,6 +50,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     timers.current.set(id, timer)
   }, [removeToast])
 
+  const contextValue = useMemo(() => ({ showToast }), [showToast])
+
   useEffect(() => {
     const activeTimers = timers.current
 
@@ -59,7 +62,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <ToastContext.Provider value={contextValue}>
       {children}
 
       <ToastContainer
