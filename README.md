@@ -6,6 +6,14 @@ O projeto reúne páginas de perfil, amigos, comunidades e um mural de recados. 
 
 > Projeto de estudo e portfólio, sem vínculo com o Orkut original.
 
+## Demonstração
+
+[Acessar o Clone do Orkut](https://devhome915.github.io/orkut/)
+
+### Tela inicial
+
+![Tela inicial do Clone do Orkut](docs/tela-inicial.png)
+
 ## Funcionalidades
 
 - Navegação entre início, perfil, amigos, comunidades e recados.
