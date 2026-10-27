@@ -1,10 +1,24 @@
-import type { Scrap, CreateScrap } from "../types/Scrap";
+import type { Scrap, CreateScrap } from '../types/Scrap'
+
 import { API_URL } from './api'
+
+import {
+  getLocalScraps,
+  createLocalScrap,
+  updateLocalScrap,
+  deleteLocalScrap
+} from './localScrapService'
 
 const SCRAPS_URL = `${API_URL}/scraps`
 
-// GET - Listar recados
+const isDemoMode = import.meta.env.VITE_DATA_MODE === 'demo'
+
+// Listar recados
 export async function getScraps(): Promise<Scrap[]> {
+  if (isDemoMode) {
+    return getLocalScraps()
+  }
+
   const response = await fetch(SCRAPS_URL)
 
   if (!response.ok) {
@@ -14,10 +28,14 @@ export async function getScraps(): Promise<Scrap[]> {
   return response.json()
 }
 
-// POST - Criar recado
+// Criar recado
 export async function createScrap(
   data: CreateScrap
 ): Promise<Scrap> {
+  if (isDemoMode) {
+    return createLocalScrap(data)
+  }
+
   const response = await fetch(SCRAPS_URL, {
     method: 'POST',
     headers: {
@@ -33,11 +51,15 @@ export async function createScrap(
   return response.json()
 }
 
-// PATCH - Atualizar recado
+// Atualizar recado
 export async function updateScrap(
   id: string,
   message: string
 ): Promise<Scrap> {
+  if (isDemoMode) {
+    return updateLocalScrap(id, message)
+  }
+
   const response = await fetch(`${SCRAPS_URL}/${id}`, {
     method: 'PATCH',
     headers: {
@@ -53,10 +75,12 @@ export async function updateScrap(
   return response.json()
 }
 
-// DELETE - Excluir recado
-export async function deleteScrap(
-  id: string
-): Promise<void> {
+// Excluir recado
+export async function deleteScrap(id: string): Promise<void> {
+  if (isDemoMode) {
+    return deleteLocalScrap(id)
+  }
+
   const response = await fetch(`${SCRAPS_URL}/${id}`, {
     method: 'DELETE'
   })
