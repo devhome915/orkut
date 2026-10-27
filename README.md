@@ -1,209 +1,321 @@
-Clone do Orkut
-Aplicação web inspirada no Orkut, desenvolvida para praticar React, TypeScript e integração com uma API REST simulada.
+# Clone do Orkut
 
-O projeto reúne páginas de perfil, amigos, comunidades e um mural de recados com criação, edição e exclusão. O foco é aprender a organizar uma aplicação React e oferecer feedback ao usuário durante as operações.
-Projeto de estudo e portfólio, em desenvolvimento. Não possui vínculo com o Orkut original.
+Aplicação web inspirada no Orkut, desenvolvida para estudar React, TypeScript e integração com uma API REST simulada.
 
-Funcionalidades implementadas
+O projeto reúne páginas de perfil, amigos, comunidades e um mural de recados. Foi criado para praticar componentes, rotas, organização do código, requisições HTTP e tratamento de erros.
+
+> Projeto de estudo e portfólio, sem vínculo com o Orkut original.
+
+## Funcionalidades
+
 - Navegação entre início, perfil, amigos, comunidades e recados.
-- Rota de perfil com parâmetro de identificação do usuário.
-- Consulta de usuários na API simulada.
+- Página de perfil com identificador na rota.
 - Listagem, criação, edição e exclusão de recados.
-- Validação para impedir publicação e edição de mensagens vazias.
+- Validação para evitar mensagens vazias.
 - Modal de confirmação para salvar alterações e excluir recados.
-- Cancelamento da edição de um recado.
-- Notificações de sucesso e erro com um sistema de toasts.
-- Indicadores de carregamento e processamento.
-- Desabilitação de ações durante o salvamento.
-- Mensagem quando não existem recados publicados.
-- Persistência dos recados no arquivo local da API simulada.
-Tecnologias
-Tecnologia	Uso no projeto
-React	Construção da interface com componentes
-TypeScript	Definição de tipos e contratos de dados
-Vite	Ambiente de desenvolvimento e geração do build
-React Router	Navegação e rotas com parâmetros
-Bootstrap	Estilização e organização do layout
-Bootstrap Icons	Ícones dos botões e da interface
-Context API	Compartilhamento do sistema de notificações
-Fetch API	Requisições HTTP
-JSON Server	API REST simulada a partir do arquivo db.json
-Oxlint	Análise estática do código
+- Notificações de sucesso e erro.
+- Indicadores de carregamento e bloqueio de ações durante o salvamento.
+- Modo API com JSON Server.
+- Modo de demonstração que salva os recados no navegador.
 
+## Tecnologias
 
-Como funciona
-A interface chama hooks e serviços para consultar ou alterar os dados.
+| Tecnologia | Uso |
+| --- | --- |
+| React | Componentes e interface |
+| TypeScript | Tipos dos dados e do código |
+| Vite | Desenvolvimento e build |
+| React Router | Navegação entre páginas |
+| Bootstrap e Bootstrap Icons | Estilos e ícones |
+| Context API | Compartilhamento das notificações |
+| Fetch API | Requisições HTTP no modo API |
+| JSON Server | API simulada para desenvolvimento |
+| localStorage | Armazenamento de recados no modo demonstração |
+| Oxlint | Análise estática do código |
+| GitHub Actions | Verificação e publicação, quando o workflow estiver configurado |
 
-No mural de recados:
-1. O componente apresenta o formulário e a lista de mensagens.
-2. O hook useScraps coordena carregamento, salvamento e atualização do estado.
-3. O serviço scrapService realiza as requisições HTTP.
-4. O JSON Server consulta ou altera os registros em db.json.
-5. A interface apresenta o resultado por meio da lista atualizada e dos toasts.
-A aplicação utiliza dados locais e uma API simulada. Não existe autenticação real nem autorização de operações por usuário.
-Requisitos
+## Como o projeto funciona
+
+O componente da página de recados utiliza o hook `useScraps`, que chama as funções de `scrapService`. A variável `VITE_DATA_MODE` determina onde os dados são obtidos:
+
+| Modo | Amigos | Recados |
+| --- | --- | --- |
+| `api` | Registros do JSON Server | Lidos e alterados no `db.json` |
+| `demo` | Lista local de exemplo | Salvos no navegador com `localStorage` |
+
+Os dados dos dois modos são separados. A lista da API e a lista local de amigos podem apresentar nomes e quantidades diferentes.
+
+## Requisitos
+
 - Git.
 - Node.js 24.x com npm.
-- Um navegador atualizado.
-A versão indicada é uma referência para preparar o ambiente. O repositório ainda não fixa a versão do Node.js em um arquivo próprio.
+- Navegador atualizado.
 
-Confira a instalação:
+Para verificar as versões instaladas:
+
+```bash
 git --version
 node --version
 npm --version
-Executar localmente
-1. Obter o projeto
+```
+
+## Como executar
+
+### 1. Obter o projeto
+
 Se você ainda não possui uma cópia local:
+
+```bash
 git clone https://github.com/devhome915/orkut.git
 cd orkut
-Se já possui o projeto, abra o terminal na pasta que contém package.json e db.json.
-2. Instalar as dependências
+```
+
+Se já possui o projeto, abra o terminal na pasta que contém `package.json` e `db.json`.
+
+### 2. Instalar as dependências
+
+```bash
 npm ci
-O comando instala as dependências de acordo com o package-lock.json.
-3. Configurar o endereço da API
-Copie .env.example para um arquivo chamado .env.local na raiz do projeto.
+```
+
+Esse comando instala as dependências de acordo com o `package-lock.json`.
+
+### 3. Configurar o ambiente
+
+Crie o arquivo `.env.local` na raiz do projeto. Você pode copiar o arquivo de exemplo:
 
 No Windows, usando PowerShell:
+
+```powershell
 Copy-Item .env.example .env.local
+```
+
 No Linux ou macOS:
+
+```bash
 cp .env.example .env.local
-Conteúdo esperado:
+```
+
+Se `.env.local` já existir, abra e edite esse arquivo, preservando as demais configurações que precisar.
+
+Escolha o modo de execução:
+
+**Modo API**
+
+```dotenv
 VITE_API_URL=http://localhost:3000
-Variável	Descrição	Valor local
-VITE_API_URL	Endereço base da API	http://localhost:3000
+VITE_DATA_MODE=api
+```
 
+**Modo demonstração**
 
-Sem essa configuração, o código utiliza http://localhost:3000 como endereço padrão.
+```dotenv
+VITE_DATA_MODE=demo
+```
 
-O arquivo .env.local é ignorado pelo padrão *.local do .gitignore atual. Variáveis com prefixo VITE_ ficam disponíveis no navegador: não coloque senhas ou chaves privadas nelas.
+No modo demonstração, `VITE_API_URL` pode permanecer configurada, mas os serviços de amigos e recados usam dados locais. Se `VITE_DATA_MODE` não for `demo`, esses serviços usam a API. Sem uma URL configurada, a aplicação usa `http://localhost:3000`.
 
-Reinicie o servidor do Vite após alterar a configuração.
-4. Iniciar a API simulada
-No primeiro terminal, na raiz do projeto:
+O arquivo `.env.local` é ignorado pelo Git na configuração atual. Variáveis com prefixo `VITE_` ficam disponíveis no navegador; não coloque senhas ou chaves privadas nelas.
+
+Reinicie o servidor do Vite após alterar as variáveis.
+
+### 4. Iniciar o modo escolhido
+
+**Modo API:** em um terminal, inicie o JSON Server:
+
+```bash
 npx json-server db.json --port 3000
-Mantenha esse terminal aberto. Para verificar a API, acesse:
+```
+
+Mantenha esse terminal aberto. Em outro terminal, inicie a aplicação:
+
+```bash
+npm run dev
+```
+
+Para conferir se a API está disponível, abra:
+
 - Usuários: http://localhost:3000/users
 - Recados: http://localhost:3000/scraps
 - Dados de comunidades: http://localhost:3000/communities
-O recurso /communities está disponível no arquivo da API; isso não significa que todas as telas utilizem esse endpoint.
-5. Iniciar a interface
-Abra um segundo terminal na mesma pasta:
+
+O endpoint de comunidades existe no `db.json`, mas a existência dele não significa que todas as telas o utilizem.
+
+**Modo demonstração:** com `VITE_DATA_MODE=demo`, inicie apenas a interface:
+
+```bash
 npm run dev
-Acesse o endereço informado pelo Vite, normalmente:
+```
 
-http://localhost:5173
+Nos dois casos, abra o endereço **exibido no terminal**. Com a base `/orkut/`, o endereço local normalmente será parecido com `http://localhost:5173/orkut/`. A porta pode mudar se estiver ocupada.
 
-A API e a interface precisam permanecer em execução ao mesmo tempo para testar os recursos que dependem de requisições.
-Rotas da aplicação
-Rota	Página ou comportamento
-/	Página inicial
-/perfil	Redirecionamento para o perfil do usuário definido localmente
-/perfil/:id	Página de perfil com identificador na URL
-/recados	Mural de recados
-/amigos	Página de amigos
-/comunidades	Página de comunidades
+No modo demonstração, cada navegador mantém seus próprios recados. Esses dados podem ser apagados quando o armazenamento do navegador for limpo. Eles não são compartilhados entre visitantes.
 
+## Rotas
 
-Exemplo de rota de perfil: /perfil/1.
+O projeto utiliza `HashRouter`. Os caminhos abaixo aparecem depois de `#` no endereço:
 
-O projeto utiliza BrowserRouter. Em uma futura publicação, a hospedagem deverá permitir o carregamento de index.html ao acessar diretamente as rotas da aplicação.
-Comandos disponíveis
-Execute os comandos na raiz do projeto.
-Comando	Finalidade
-npm ci	Instalar as dependências a partir do arquivo de lock
-npm run dev	Iniciar o servidor de desenvolvimento
-npx json-server db.json --port 3000	Iniciar a API simulada
-npm run lint	Executar a análise estática com Oxlint
-npm run build	Verificar os projetos TypeScript e gerar o build com Vite
-npm run preview	Visualizar localmente um build já gerado
+| Caminho | Página ou comportamento |
+| --- | --- |
+| `/` | Página inicial |
+| `/perfil` | Redirecionamento para o perfil do usuário local |
+| `/perfil/:id` | Perfil com identificador na rota |
+| `/recados` | Mural de recados |
+| `/amigos` | Página de amigos |
+| `/comunidades` | Página de comunidades |
 
+Exemplo: `http://localhost:5173/orkut/#/recados`.
 
-Para verificar o código e gerar o build:
+## Comandos disponíveis
+
+| Comando | Finalidade |
+| --- | --- |
+| `npm ci` | Instalar dependências usando o arquivo de lock |
+| `npm run dev` | Iniciar o servidor de desenvolvimento |
+| `npx json-server db.json --port 3000` | Iniciar a API simulada |
+| `npm run lint` | Verificar o código com Oxlint |
+| `npm run build` | Verificar os tipos e gerar o build com Vite |
+| `npm run preview` | Visualizar localmente um build já gerado |
+
+Para validar e gerar o build:
+
+```bash
 npm run lint
 npm run build
-Para visualizar o resultado do build:
+```
+
+Para visualizar o build:
+
+```bash
 npm run preview
-Abra o endereço informado pelo terminal. A API deve continuar em execução para os recursos que dependem dela.
+```
 
-O comando de preview serve para conferir o build localmente; não publica o projeto.
-Organização do código
-Diretório ou arquivo	Responsabilidade
-src/components/	Componentes da interface, incluindo recados, modal e toasts
-src/contexts/	Contexto e provedor das notificações
-src/hooks/	Hooks para recados e acesso ao sistema de toasts
-src/layouts/	Estrutura compartilhada entre as páginas
-src/pages/	Páginas utilizadas nas rotas
-src/services/	Configuração da API e requisições HTTP
-src/types/	Tipos dos usuários, comunidades e recados
-src/data/	Dados locais de apoio
-src/assets/	Estilos e imagens
-src/App.tsx	Definição das rotas
-src/main.tsx	Inicialização do React, roteador e provedor de toasts
-db.json	Registros da API simulada
-.env.example	Exemplo da configuração de ambiente
+A configuração do modo de dados é incorporada durante o build. Portanto, escolha `VITE_DATA_MODE` antes de executar `npm run build` e gere o build novamente caso altere a variável. No modo API, mantenha o JSON Server ligado para os recursos que dependem dele.
 
+O comando `preview` permite conferir o build na sua máquina; ele não publica o projeto.
 
-API de recados
-Método	Endpoint	Operação
-GET	/scraps	Listar recados
-POST	/scraps	Criar um recado
-PATCH	/scraps/:id	Atualizar a mensagem
-DELETE	/scraps/:id	Excluir um recado
+## Organização do código
 
+| Pasta ou arquivo | Responsabilidade |
+| --- | --- |
+| `src/components/` | Componentes da interface, incluindo recados, modal e notificações |
+| `src/contexts/` | Contexto das notificações |
+| `src/hooks/` | Hooks de recados e notificações |
+| `src/layouts/` | Estrutura compartilhada das páginas |
+| `src/pages/` | Páginas utilizadas nas rotas |
+| `src/services/` | Serviços da API e do armazenamento local |
+| `src/types/` | Tipos dos usuários, comunidades e recados |
+| `src/data/` | Dados locais de apoio |
+| `src/assets/` | Estilos e imagens |
+| `src/App.tsx` | Definição das rotas |
+| `src/main.tsx` | Inicialização do React, roteador e contexto |
+| `db.json` | Dados do JSON Server |
+| `.env.example` | Exemplo de configuração do ambiente |
+| `.github/workflows/` | Arquivos dos workflows do GitHub Actions |
 
-Exemplo de dados enviados ao criar um recado:
+## API de recados
+
+No modo API, os serviços utilizam os seguintes endpoints:
+
+| Método | Endpoint | Operação |
+| --- | --- | --- |
+| GET | `/scraps` | Listar recados |
+| POST | `/scraps` | Criar recado |
+| PATCH | `/scraps/:id` | Atualizar mensagem |
+| DELETE | `/scraps/:id` | Excluir recado |
+
+Exemplo de dados para criar um recado:
+
+```json
 {
   "author": "Usuário de demonstração",
   "message": "Olá! Este é um recado de teste.",
   "createdAt": "2026-10-26T12:00:00.000Z"
 }
-O identificador é retornado pela API após a criação.
-Roteiro de validação manual
-Com a API e a interface em execução:
-1. Abra a página de recados e confira a listagem.
-2. Publique uma mensagem e confira o toast de sucesso.
-3. Atualize a página para verificar a persistência.
-4. Tente publicar uma mensagem composta apenas por espaços; o envio deve permanecer desabilitado.
-5. Edite um recado e cancele a edição; a mensagem original deve continuar aparecendo.
-6. Edite novamente, salve e confirme no modal; confira a atualização.
-7. Clique em excluir e cancele no modal; o recado deve permanecer na lista.
-8. Repita a exclusão e confirme; o recado deve desaparecer.
-9. Interrompa a API com Ctrl+C no terminal correspondente e tente publicar uma mensagem; confira o feedback de erro e a preservação do texto digitado.
-10. Inicie a API novamente e repita a operação.
-As operações modificam o arquivo db.json. Utilize somente dados de demonstração e revise as alterações desse arquivo antes de fazer commits.
+```
 
-Esse roteiro documenta cenários para execução manual. Não representa uma suíte de testes automatizados nem um registro de testes executados.
-Solução de problemas
-A interface abre, mas os dados não carregam
+## Validação manual
+
+Execute os testes nos dois modos:
+
+1. Abra as páginas de início, amigos, perfil, comunidades e recados.
+2. Publique um recado e confirme a notificação de sucesso.
+3. Atualize a página e confira se o recado continua aparecendo.
+4. Tente publicar uma mensagem composta apenas por espaços.
+5. Edite um recado, cancele e confira se a mensagem original permanece.
+6. Edite novamente, salve e confirme no modal.
+7. Cancele uma exclusão e confira se o recado continua na lista.
+8. Exclua o recado e confirme no modal.
+9. No modo API, interrompa o JSON Server e tente publicar um recado; confira o feedback de erro.
+10. Reinicie a API e teste novamente.
+
+No modo API, essas operações podem modificar o `db.json`. Utilize dados de teste e revise as alterações antes de fazer commits.
+
+Este roteiro descreve testes manuais; não representa uma suíte automatizada.
+
+## Publicação
+
+O projeto está sendo preparado para publicação no GitHub Pages com GitHub Actions. O workflow proposto executa lint e build em Pull Requests e tenta publicar a versão de demonstração quando as alterações chegam à `main`.
+
+O build de publicação deve utilizar `VITE_DATA_MODE=demo`. A publicação depende da configuração do GitHub Pages e de uma execução bem-sucedida do workflow.
+
+## Solução de problemas
+
+**Os dados não carregam no modo API**
+
 - Confira se o JSON Server está em execução.
-- Abra http://localhost:3000/users para verificar a resposta da API.
-- Confira o valor de VITE_API_URL em .env.local.
-- Reinicie o Vite caso tenha alterado a variável.
-A porta 3000 está ocupada
-Inicie a API em outra porta:
+- Abra http://localhost:3000/users para verificar a resposta.
+- Confira a variável `VITE_API_URL` em `.env.local`.
+- Reinicie o Vite após alterar as variáveis.
+
+**A porta 3000 está ocupada**
+
+Inicie o JSON Server em outra porta:
+
+```bash
 npx json-server db.json --port 3001
-Atualize .env.local:
+```
+
+Altere a URL no `.env.local`:
+
+```dotenv
 VITE_API_URL=http://localhost:3001
-Depois reinicie o Vite.
-O Vite usa outra porta
-Utilize o endereço exibido no terminal. Quando a porta padrão está ocupada, o servidor pode iniciar em outra.
-A instalação falha
-Confira a versão do Node.js e leia a mensagem apresentada pelo npm. Preserve o arquivo de lock para manter a instalação reproduzível; não o exclua como primeira tentativa de correção.
-Limitações atuais
-- O backend é simulado com JSON Server e armazenamento em arquivo.
-- Não há autenticação real, controle de acesso ou isolamento de dados por usuário.
-- O usuário que publica recados é definido localmente.
-- Parte dos dados da aplicação é mantida em arquivos locais.
-- Ainda não há suíte de testes automatizados ou workflow de integração contínua na branch principal examinada.
-- A navegação por teclado e o gerenciamento de foco do modal ainda precisam de melhorias.
-- A publicação de uma demonstração completa, com API acessível, permanece como próxima etapa.
-Próximas melhorias
-- Adicionar capturas reais da interface a esta documentação.
-- Configurar verificações de lint e build em Pull Requests.
-- Criar testes para os fluxos principais de recados e falhas da API.
+VITE_DATA_MODE=api
+```
+
+Reinicie o Vite.
+
+**O Vite usa outra porta**
+
+Abra o endereço exibido no terminal. O servidor pode escolher outra porta quando a padrão está ocupada.
+
+**O modo alterado não aparece no preview**
+
+Confira a configuração do ambiente e execute `npm run build` novamente antes de `npm run preview`.
+
+**A instalação falha**
+
+Confira as versões de Node.js e npm e leia a mensagem de erro. O arquivo de lock ajuda a reproduzir a instalação.
+
+## Limitações atuais
+
+- O JSON Server é uma API simulada com dados em arquivo.
+- A demonstração usa armazenamento no navegador, separado para cada visitante.
+- Não há autenticação real nem controle de acesso por usuário.
+- Parte dos dados é mantida em arquivos locais.
+- A navegação por teclado e o gerenciamento de foco do modal podem ser aprimorados.
+- O projeto ainda pode receber testes automatizados para seus fluxos principais.
+
+## Próximas melhorias
+
+- Adicionar capturas reais da interface.
+- Validar e publicar a demonstração no GitHub Pages.
+- Criar testes automatizados para os fluxos de recados e erros.
 - Melhorar o foco e a navegação por teclado no modal.
-- Validar o comportamento em diferentes tamanhos de tela.
-- Publicar uma demonstração e documentar suas limitações.
-- Evoluir a API e implementar autenticação e autorização.
-Autor
-Desenvolvido por Alex dos Santos como projeto de estudo e portfólio.
+- Evoluir a API e estudar autenticação e autorização.
+
+## Autor
+
+Desenvolvido por **Alex dos Santos** como projeto de estudo e portfólio.
+
+[GitHub — devhome915](https://github.com/devhome915)
